@@ -16,26 +16,19 @@ function safeLevels(levels) {
     tooLowOrTooHigh = diffs.filter(diff => diff == 0 || Math.abs(diff) > 3).length
     declines = diffs.filter(diff => diff < 0).length
     increases = diffs.filter(diff => diff > 0).length
-    if(tooLowOrTooHigh > 0 || (declines > 0 && increases > 0)) {
-        return false
-    } else {
-        return true
-    }
+    return tooLowOrTooHigh == 0 && !(declines > 0 && increases > 0)
 }
 
 function safeLevelsWithProblemDampener(levels) {
     validCombinations = [levels]
     for(i=0;i<levels.length;i++) {
-        combination = [...levels]
-        combination.splice(i, 1)
-        validCombinations.push(combination)
+        validCombinations.push([...levels.slice(0, i), ...levels.slice(i+1)])
     }
     numberOfSafeCombinations = validCombinations.map(safeLevels).filter(safe => safe).length
     return numberOfSafeCombinations > 0
 }
 
 part1 = input.map(safeLevels).filter(safety => safety).length
-
 console.log(`Part 1: ${part1}`)
 
 part2 = input.map(safeLevelsWithProblemDampener).filter(safety => safety).length
