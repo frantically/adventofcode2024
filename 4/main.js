@@ -20,15 +20,14 @@ function lookForMasCross(row, col, data) {
 }
 
 validDirections = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]]
-xmasCount = 0
+part1 = 0
 for(row=0;row<input.length;row++) {
     for(col=0;col<input[0].length;col++) {
         found = validDirections.map(direction => lookForXmas(row, col, direction[0], direction[1], input)).filter(x => x).length
-        xmasCount += found
+        part1 += found
     }
 }
 
-part1 = xmasCount
 console.log(`Part 1: ${part1}`)
 
 part2 = 0
