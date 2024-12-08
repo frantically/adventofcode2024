@@ -51,4 +51,4 @@ part1 = antiNodeCount(false, input)
 console.log(`Part 1: ${part1}`)
 
 part2 = antiNodeCount(true, input)
-console.log(`Part 1: ${part2}`)
+console.log(`Part 2: ${part2}`)
